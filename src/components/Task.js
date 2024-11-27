@@ -27,4 +27,4 @@ export default function Task({ task, onToggleTask, onDeleteTask }) {
         <button onClick={handleDelete}>Delete</button>
       </li>
     );
-  }
+}
