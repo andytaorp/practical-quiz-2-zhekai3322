@@ -45,41 +45,47 @@
 import React, { useState } from "react";
 import Form from "./Form";
 import TaskList from "./TaskList";
-import { v4 as uuidv4 } from 'uuid';
 
 function App() {
   const [tasks, setTasks] = useState([]);
 
-  const addTask = (description) => {
-    if (!description.trim()) {
-      return; 
-    }
-    
+  const handleAddTask = (description) => {
+    // TODO: write code to add a new task
+    if (!description.trim()) return; 
     const newTask = {
-      id: uuidv4(), 
-      Description: description,
+      id: Date.now(),
+      description,
       completed: false,
     };
-    setTasks((prevTasks) => [...prevTasks, description]);
+    setTasks((prevTasks) => [...prevTasks, newTask]);
   };
 
-  const toggleTask = (id) => {
-    const updatedTasks = tasks.map((task) =>
-      task.id === id ? { ...task, completed: !task.completed } : task
+  const handleToggleTask = (id) => {
+    // TODO: write code to toggle a task's status
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
     );
-    setTasks(updatedTasks);
   };
 
-  const deleteTask = (id) => {
-    const updatedTasks = tasks.filter((task) => task.id !== id);
-    setTasks(updatedTasks);
-  };
+
+  const handleDeleteTask = (id) => {
+    // TODO: write code to delete a task
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+    };
 
   return (
     <div className="app">
       <h1>Task Tracker</h1>
-      <Form onAddTask={addTask} />
-      <TaskList tasks={tasks} onToggleTask={toggleTask} onDeleteTask={deleteTask} />
+      {/* {/TODO: add a form to add a new task/}
+      {/TODO: add a list of tasks/} */}
+      <Form onAddTask={handleAddTask} />
+      <TaskList
+        tasks={tasks}
+        onToggleTask={handleToggleTask}
+        onDeleteTask={handleDeleteTask}
+      />
     </div>
   );
 }

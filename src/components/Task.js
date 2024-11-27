@@ -30,35 +30,28 @@
 // }
 
 import React from "react";
-
+/* TODO: implement the Task component */
 export default function Task({ task, onToggleTask, onDeleteTask }) {
-  const handleToggle = () => {
-    onToggleTask(task.id);
-  };
-
-  const handleDelete = () => {
-    onDeleteTask(task.id);
-  };
-
   return (
-    <li style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
-      <input
-        type="checkbox"
-        checked={task.completed}
-        onChange={handleToggle}
-        aria-label={`Mark ${task.description} as completed`} 
-      />
-      <span style={{ 
-        textDecoration: task.completed ? "line-through" : "none",
-        marginLeft: '8px',
-        flexGrow: 1 
-      }}>
-        {task.description}
-      </span>
-      <button 
-        onClick={handleDelete} 
-        aria-label={`Delete ${task.description}`}
-        style={{ marginLeft: '8px' }}
+    <li>
+      <label>
+        <input
+          type="checkbox"
+          checked={task.completed}
+          onChange={() => onToggleTask(task.id)}
+        />
+        <span
+          style={{
+            textDecoration: task.completed ? "line-through" : "none",
+            marginLeft: "8px",
+          }}
+        >
+          {task.description}
+        </span>
+      </label>
+      <button
+        onClick={() => onDeleteTask(task.id)}
+        style={{ marginLeft: "16px", color: "red" }}
       >
         Delete
       </button>
