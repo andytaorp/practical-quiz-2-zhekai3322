@@ -3,8 +3,9 @@ import React, { useState } from "react";
 export default function Form({ onAddTask }) {
   const [description, setDescription] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (event) => {
     // TODO: write code to handle form submission
+    event.preventDefault();
     if (description) {
       onAddTask(description);
       setDescription("");
