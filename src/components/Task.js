@@ -41,16 +41,27 @@ export default function Task({ task, onToggleTask, onDeleteTask }) {
   };
 
   return (
-    <li>
+    <li style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
       <input
         type="checkbox"
         checked={task.completed}
         onChange={handleToggle}
+        aria-label={`Mark ${task.description} as completed`} 
       />
-      <span style={{ textDecoration: task.completed ? "line-through" : "none" }}>
+      <span style={{ 
+        textDecoration: task.completed ? "line-through" : "none",
+        marginLeft: '8px',
+        flexGrow: 1 
+      }}>
         {task.description}
       </span>
-      <button onClick={handleDelete}>Delete</button>
+      <button 
+        onClick={handleDelete} 
+        aria-label={`Delete ${task.description}`}
+        style={{ marginLeft: '8px' }}
+      >
+        Delete
+      </button>
     </li>
   );
 }
