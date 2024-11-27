@@ -50,17 +50,17 @@ import { v4 as uuidv4 } from 'uuid';
 function App() {
   const [tasks, setTasks] = useState([]);
 
-  const addTask = (newTaskDescription) => {
-    if (!newTaskDescription.trim()) {
+  const addTask = (description) => {
+    if (!description.trim()) {
       return; 
     }
     
     const newTask = {
       id: uuidv4(), 
-      description: newTaskDescription,
+      Description: description,
       completed: false,
     };
-    setTasks((prevTasks) => [...prevTasks, newTask]);
+    setTasks((prevTasks) => [...prevTasks, description]);
   };
 
   const toggleTask = (id) => {
