@@ -5,16 +5,28 @@ import TaskList from "./TaskList";
 function App() {
   const [tasks, setTasks] = useState([]);
 
-  const handleAddTask = (newTask) => {
+  const handleAddTask = (newTaskDescription) => {
     // TODO: write code to add a new task
+    const newTask = {
+      id: Date.now(),
+      description: newTaskDescription,
+      completed: false,
+    };
+    setTasks([...tasks, newTask]); 
   };
 
   const handleToggleTask = (id) => {
     // TODO: write code to toggle a task's status
+    const updatedTasks = tasks.map((task) =>
+      task.id === id ? { ...task, completed: !task.completed } : task
+    );
+    setTasks(updatedTasks);
   };
 
   const handleDeleteTask = (id) => {
     // TODO: write code to delete a task
+    const updatedTasks = tasks.filter((task) => task.id !== id);
+    setTasks(updatedTasks);
   };
 
   return (
@@ -22,6 +34,8 @@ function App() {
       <h1>Task Tracker</h1>
       {/*TODO: add a form to add a new task*/}
       {/*TODO: add a list of tasks*/}
+      <Form onAddTask={handleAddTask} />
+      <TaskList tasks={tasks} onToggleTask={handleToggleTask} onDeleteTask={handleDeleteTask} />
     </div>
   );
 }
