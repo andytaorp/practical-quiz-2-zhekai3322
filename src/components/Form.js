@@ -18,7 +18,7 @@ export default function Form({ onAddTask }) {
       <input
         type="text"
         value={description}
-        onChange={(event) => setDescription(event.target.value)}
+        onChange={(e) => setDescription(e.target.value)}
         placeholder="Enter task description"
       />
       <button type="submit">Add Task</button>
